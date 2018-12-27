@@ -10,7 +10,7 @@ import Qs from 'qs'
 
 Vue.prototype.axios = axios;
 Vue.prototype.qs = Qs;
-axios.defaults.baseURL = 'http://localhost:8088';
+axios.defaults.baseURL = 'http://192.168.199.20:8088';
 axios.defaults.timeout = 15000;  //超时响应
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.withCredentials = true;
