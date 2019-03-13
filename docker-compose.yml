@@ -62,7 +62,7 @@ services:
 
 
   locust-runner:
-    build: ./LoucstRunner/locust-runner/
+    build: ./Easyload/locust-runner/
     container_name: locust-runner
     ports:
       - "8088:8088"
@@ -72,7 +72,7 @@ services:
       org.label-schema.group: "monitoring"
 
   frontend:
-    build: ./LoucstRunner/frontend
+    build: ./Easyload/frontend
     container_name: frontend
     ports:
       - "8080:80"
