@@ -1,5 +1,5 @@
-rm -f ./.env
-touch ./.env
+#rm -f ./.env
+#touch ./.env
 
 prom=9090
 pgw=9091
@@ -16,8 +16,12 @@ while getopts ':p:g:l:' OPT; do
     esac
 done
 
-echo -e "PROM=${prom}\nPGW=${pgw}\nLR=${lr}\n" > .env
-source .env
+#echo -e "PROM=${prom}\nPGW=${pgw}\nLR=${lr}\n" > .env
+#source .env
+
+export PROM=${prom} 
+export PGW=${pgw}
+export LR=${lr}
 
 CURRENT_CONTAINER=$(docker ps -aq -f "name=locust-runner")
 if [[ -n "$CURRENT_CONTAINER" ]]; then
