@@ -48,7 +48,7 @@ services:
 
 
   locust-runner:
-    image: ashwwf/locust-runner
+    build: ./locust-runner/
     container_name: locust-runner
     ports:
       - "${LR}:8088"
