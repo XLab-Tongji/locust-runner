@@ -17,6 +17,7 @@ while getopts ':p:g:l:' OPT; do
 done
 
 echo -e "PROM=${prom}\nPGW=${pgw}\nLR=${lr}\n" > .env
+source .env
 
 CURRENT_CONTAINER=$(docker ps -aq -f "name=locust-runner")
 if [[ -n "$CURRENT_CONTAINER" ]]; then
