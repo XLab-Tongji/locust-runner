@@ -18,19 +18,19 @@ done
 
 echo -e "PROM=${prom}\nPGW=${pgw}\nLR=${lr}\n" > .env
 
-CURRENT_CONTAINER=$(docker ps -aq -f "locust-runner")
+CURRENT_CONTAINER=$(docker ps -aq -f "name=locust-runner")
 if [[ -n "$CURRENT_CONTAINER" ]]; then
     docker stop ${CURRENT_CONTAINER}
     docker rm ${CURRENT_CONTAINER}
 fi
 
-CURRENT_CONTAINER1=$(docker ps -aq -f "prometheus")
+CURRENT_CONTAINER1=$(docker ps -aq -f "name=prometheus")
 if [[ -n "$CURRENT_CONTAINER1" ]]; then
     docker stop ${CURRENT_CONTAINER1}
     docker rm ${CURRENT_CONTAINER1}
 fi
 
-CURRENT_CONTAINER2=$(docker ps -aq -f "pushgateway")
+CURRENT_CONTAINER2=$(docker ps -aq -f "name=pushgateway")
 if [[ -n "$CURRENT_CONTAINER2" ]]; then
     docker stop ${CURRENT_CONTAINER2}
     docker rm ${CURRENT_CONTAINER2}
