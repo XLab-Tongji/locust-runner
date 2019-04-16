@@ -4,7 +4,7 @@ import random
 class UserBehavior(TaskSet):
 	@task()
 	def register(self):
-		rand = random.randrange(1000, 9999, 1)
+		rand = random.randrange(1000000000, 9999999999, 1)
 		self.client.post("/register", json = {"username":str(rand),"password":str(rand),"email":"","firstName":"","lastName":""}, \
 		headers = {"Content-Type":"application/json; charset=UTF-8"})
 	
