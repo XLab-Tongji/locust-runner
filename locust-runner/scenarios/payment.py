@@ -37,10 +37,10 @@ class UserBehavior(TaskSet):
         someid = random.choice(UserBehavior.items)
         self.client.post("/cart", json={"id": someid},
                          headers={"Content-Type": "application/json; charset=UTF-8"})
-        
-	@seq_task(4)
-	def payment(self):
-		self.client.post("/orders")
+    
+    @seq_task(4)
+    def payment(self):
+        self.client.post("/orders")
 	
 class WebsiteUser(HttpLocust):
     task_set = UserBehavior
