@@ -35,7 +35,7 @@ class UserBehavior(TaskSet):
     @seq_task(3)
     def addtocart(self):
         someid = random.choice(UserBehavior.items)
-        self.client.post("/cart", json={"id": someid},
+        self.client.post("/cart", json={"id": someid}, \
                          headers={"Content-Type": "application/json; charset=UTF-8"})
     
     @seq_task(4)
