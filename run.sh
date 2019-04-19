@@ -41,6 +41,6 @@ if [ -n "$CURRENT_CONTAINER2" ]; then
     docker rm ${CURRENT_CONTAINER2}
 fi
 
-docker-compose up -d
+docker-compose up -d --build
 
 
