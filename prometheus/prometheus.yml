@@ -5,6 +5,7 @@ global:
   # scrape_timeout is set to the global default (10s).
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
+  - "alert.rules"
   # - "first_rules.yml"
   # - "second_rules.yml"
 # A scrape configuration containing exactly one endpoint to scrape:
@@ -27,3 +28,11 @@ scrape_configs:
       - targets: ['pushgateway:9091']
         labels:
           instance: pushgateway
+
+
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets: 
+      - 'alertmanager:9093'
