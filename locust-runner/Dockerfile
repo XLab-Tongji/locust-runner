@@ -1,8 +1,8 @@
 FROM rainlf/ubuntu-java-python-locust
 
-MAINTAINER ashwwf@outlook.com
-
 WORKDIR /home
+
+MAINTAINER ashwwf@outlook.com
 
 ADD scenarios scenarios
 ADD target/locust-runner-1.0.0.jar app.jar
