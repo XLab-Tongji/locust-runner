@@ -28,6 +28,11 @@ scrape_configs:
       - targets: ['pushgateway:9091']
         labels:
           instance: pushgateway
+  - job_name: 'sock-shop'
+    scrape_interval: 1s
+    static_configs:
+      - targets: ['10.60.38.181:3334']
+        
 
 
 alerting:
