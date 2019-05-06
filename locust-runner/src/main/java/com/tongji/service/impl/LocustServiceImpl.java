@@ -3,6 +3,7 @@ package com.tongji.service.impl;
 //import com.csvreader.CsvWriter;
 import com.tongji.config.LocustWebPort;
 import com.tongji.config.Scenario;
+import com.tongji.domain.DataCache;
 import com.tongji.domain.LocustParam;
 //import com.tongji.domain.LocustResult;
 //import com.tongji.mapper.LocustMapper;
@@ -63,7 +64,8 @@ public class LocustServiceImpl implements LocustService {
     @Async
     @Override
     public void runWorkLoad(LocustParam locustParam) throws Exception {
-
+    	
+    	//HostCache cache = HostCache.getSimpleCache();
         String cmd = String.format("locust -f %s --no-web -c %d -r %d -t %dm -H %s --csv=%s --only-summary > /dev/null",
                 locustFileDir + Scenario.getScenarioFileName(locustParam.getScenarioId()),
                 locustParam.getClients(),
@@ -71,6 +73,7 @@ public class LocustServiceImpl implements LocustService {
                 locustParam.getRunTime(),
                 locustParam.getHost(),
                 resultFileDir + locustParam.getScenarioId() + "_" + locustParam.hashCode());
+        
 
         System.out.println(cmd);
         ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", cmd);
@@ -78,8 +81,13 @@ public class LocustServiceImpl implements LocustService {
         process.waitFor(10, TimeUnit.SECONDS);
     }
     
+    
+    //主要用这个函数
     @Override
 	public void runWorkLoad(LocustParam locustParam, String reportId) throws Exception {
+    	
+    	
+    	
     	String cmd = String.format("locust -f %s --no-web -c %d -r %d -t %dm -H %s  --csv=%s --only-summary > /dev/null",
                 locustFileDir + Scenario.getScenarioFileName(locustParam.getScenarioId()),
                 locustParam.getClients(),
@@ -87,8 +95,9 @@ public class LocustServiceImpl implements LocustService {
                 locustParam.getRunTime(),
                 locustParam.getHost(),
                 //locustParam.getPort(),
-                resultFileDir + locustParam.getScenarioId() + "_" + locustParam.hashCode());
-
+                resultFileDir + locustParam.getScenarioId() + "_" + locustParam.getHost() + "_" +locustParam.hashCode());
+    	
+    	
         System.out.println(cmd);
         ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", cmd);
         Process process = processBuilder.start();

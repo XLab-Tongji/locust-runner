@@ -22,8 +22,8 @@ public class PromServiceImpl implements PromService{
         this.pushGateWay = pushGateWay;
     }
 
-    @Override
-    public void pushall(LocustResult locustResult,Double req) throws Exception{
+	@Override
+    public void pushall(LocustResult locustResult,Double req,String Host) throws Exception{
         CollectorRegistry registry = new CollectorRegistry();
 //        Gauge scenarioId = Gauge.build()
 //                .name("locust_scenario_id").help("id of current scenario.").register(registry);
@@ -52,9 +52,10 @@ public class PromServiceImpl implements PromService{
             responseTime.labels("min", scid).set(Double.valueOf(locustResult.getMinResponseTime()));
 //            averageContentSize.set(Double.valueOf(locustResult.getAverageContentSize()));
         } finally {
-            System.out.print(pushGateWay);
+            System.out.println(pushGateWay);
+            System.out.println(Host);
             PushGateway pg = new PushGateway(pushGateWay);
-            pg.pushAdd(registry, "locust", "host");
+            pg.pushAdd(registry, "locust", Host);
 
         }
     }

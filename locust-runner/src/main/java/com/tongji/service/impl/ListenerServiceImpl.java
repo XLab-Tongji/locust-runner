@@ -27,6 +27,7 @@ public class ListenerServiceImpl implements ListenerService {
     @Override
     public void analyzeLocustResult(File file) {
         String scenarioId = file.getName().split("_")[0];
+        String Host = file.getName().split("_")[1];
         try (InputStreamReader inputStreamReader = new FileReader(file)) {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String lineTxt;
@@ -34,13 +35,11 @@ public class ListenerServiceImpl implements ListenerService {
             {
                 if (lineTxt.contains("Total")) {
                     LocustResult locustResult = LocustResultFactory.getLocustResult(scenarioId, lineTxt);
-                    //locustMapper.insert(locustResult);
-                    
-                    
+                    //locustMapper.insert(locustResult);                  
                     Double req = getRequest(file.getName(),locustResult.getRequests());
                     System.out.println(locustResult.toString());
-                    System.out.print(String.valueOf(req));
-                    promService.pushall(locustResult,req);
+                    System.out.println(String.valueOf(req));
+                    promService.pushall(locustResult,req,Host);
                 }
             }
         } catch (Exception e) {
