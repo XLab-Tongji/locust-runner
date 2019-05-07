@@ -40,7 +40,7 @@ groups:
   #     description: "Docker host storage usage is {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
   
   - alert: high_payment_error
-    expr: sum(rate(request_duration_seconds_count{service="front-end",status_code=~"4.+|5.+"}[1m])) * 100 >10
+    expr: sum(rate(request_duration_seconds_count{service="front-end",status_code=~"4.+|5.+"}[1m])) * 100 > 1000
     for: 3s
     labels:
       severity: warning
