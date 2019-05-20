@@ -45,8 +45,6 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-
-
   locust-runner:
     build: ./locust-runner/
     image: locust-runner:latest
@@ -60,5 +58,18 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    restart: unless-stopped
+    expose:
+      - 8086
+    ports:
+      - "8086:8086"
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
 
