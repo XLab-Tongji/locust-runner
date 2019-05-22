@@ -4,6 +4,7 @@ package com.tongji.service.impl;
 import com.tongji.config.LocustWebPort;
 import com.tongji.config.Scenario;
 import com.tongji.domain.DataCache;
+import com.tongji.domain.HostCache;
 import com.tongji.domain.LocustParam;
 //import com.tongji.domain.LocustResult;
 //import com.tongji.mapper.LocustMapper;
@@ -72,7 +73,7 @@ public class LocustServiceImpl implements LocustService {
                 locustParam.getHatchRate(),
                 locustParam.getRunTime(),
                 locustParam.getHost(),
-                resultFileDir + locustParam.getScenarioId() + "_" + locustParam.hashCode());
+                resultFileDir + locustParam.getScenarioId() + "_" +locustParam.hashCode());
         
 
         System.out.println(cmd);
@@ -86,7 +87,8 @@ public class LocustServiceImpl implements LocustService {
     @Override
 	public void runWorkLoad(LocustParam locustParam, String reportId) throws Exception {
     	
-    	
+    	HostCache hostCache = HostCache.getSimpleCache();
+    	hostCache.put(locustParam.hashCode(), locustParam.getHost());
     	
     	String cmd = String.format("locust -f %s --no-web -c %d -r %d -t %dm -H %s  --csv=%s --only-summary > /dev/null",
                 locustFileDir + Scenario.getScenarioFileName(locustParam.getScenarioId()),
@@ -95,7 +97,7 @@ public class LocustServiceImpl implements LocustService {
                 locustParam.getRunTime(),
                 locustParam.getHost(),
                 //locustParam.getPort(),
-                resultFileDir + locustParam.getScenarioId() + "_" + locustParam.getHost() + "_" +locustParam.hashCode());
+                resultFileDir + locustParam.getScenarioId() + "_" +locustParam.hashCode());
     	
     	
         System.out.println(cmd);

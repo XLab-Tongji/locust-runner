@@ -1,6 +1,5 @@
 from locust import HttpLocust, TaskSet, task, seq_task
 import random
-import time
 
 class UserBehavior(TaskSet):
     items = ["3395a43e-2d88-40de-b95f-e00e1502085b", "510a0d7e-8e83-4193-b483-e27e09ddc34d", "808a2de1-1aaa-4c25-a9b9-6612e8f29a38", "819e1fbf-8b7e-4f6d-811f-693534916a8b", "837ab141-399e-4c1f-9abc-bace40296bac", "a0a4f044-b040-410d-8ead-4de0446aec7e", "d3588630-ad8e-49df-bbd7-3167f7efb246",
@@ -9,7 +8,6 @@ class UserBehavior(TaskSet):
     def on_start(self):
         """ on_start is called when a Locust start before any task is scheduled """
         self.login()
-        time.sleep(5)
     
     def on_stop(self):
         """ on_stop is called when the TaskSet is stopping """
@@ -28,26 +26,22 @@ class UserBehavior(TaskSet):
     def filladdress(self):
         self.client.post("/addresses", json = {"number":"","street":"","city":"","postcode":"","country":""}, \
                          headers = {"Content-Type":"application/json; charset=UTF-8"})
-        time.sleep(5)
     
     @seq_task(2)
     def fillcreditcard(self):
         self.client.post("/cards", json = {"longNum":"1234","expires":"","ccv":""}, \
                          headers = {"Content-Type":"application/json; charset=UTF-8"})
-        time.sleep(5)
     
     @seq_task(3)
     def addtocart(self):
         someid = random.choice(UserBehavior.items)
         self.client.post("/cart", json={"id": someid}, \
                          headers={"Content-Type": "application/json; charset=UTF-8"})
-        time.sleep(5)
     
     @seq_task(4)
     def payment(self):
         self.client.post("/orders")
         self.client.delete("/cart")
-        time.sleep(5)
 	
 class WebsiteUser(HttpLocust):
     task_set = UserBehavior

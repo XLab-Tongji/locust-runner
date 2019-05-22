@@ -26,6 +26,7 @@ public class FileListener extends FileAlterationListenerAdaptor {
     public void onFileChange(File file) {
         // 触发业务
         listenerService.analyzeLocustResult(file);
+        //System.out.println("listen ok");
         
     }
 }

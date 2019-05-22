@@ -22,6 +22,7 @@ public class PromServiceImpl implements PromService{
         this.pushGateWay = pushGateWay;
     }
 
+	
 	@Override
     public void pushall(LocustResult locustResult,Double req,String Host) throws Exception{
         CollectorRegistry registry = new CollectorRegistry();
@@ -52,7 +53,12 @@ public class PromServiceImpl implements PromService{
             responseTime.labels("min", scid).set(Double.valueOf(locustResult.getMinResponseTime()));
 //            averageContentSize.set(Double.valueOf(locustResult.getAverageContentSize()));
         } finally {
-            System.out.println(pushGateWay);
+            //System.out.println(pushGateWay);
+           
+            if(Host.contains("//")){
+            	Host = Host.split("//")[1];
+            }
+            Host = Host.replaceAll("/", "");
             System.out.println(Host);
             PushGateway pg = new PushGateway(pushGateWay);
             pg.pushAdd(registry, "locust", Host);

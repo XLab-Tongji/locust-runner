@@ -36,7 +36,7 @@ public class FileListenerFactory {
         IOFileFilter directories = FileFilterUtils.and(
                 FileFilterUtils.directoryFileFilter(),
                 HiddenFileFilter.VISIBLE);
-        // 匹配txt后缀文件
+        // 匹配后缀文件
         IOFileFilter files = FileFilterUtils.and(
                 FileFilterUtils.fileFileFilter(),
                 FileFilterUtils.suffixFileFilter("_requests.csv"));
