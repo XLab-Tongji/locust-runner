@@ -41,5 +41,12 @@ if [ -n "$CURRENT_CONTAINER2" ]; then
     docker rm ${CURRENT_CONTAINER2}
 fi
 
-docker-compose up -d --build
+CURRENT_CONTAINER3=$(docker ps -aq -f "name=influxdb")
+if [ -n "$CURRENT_CONTAINER3" ]; then
+docker stop ${CURRENT_CONTAINER3}
+docker rm ${CURRENT_CONTAINER3}
+fi
 
+docker-compose up -d --build
+sleep 1m
+curl -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE prometheus"

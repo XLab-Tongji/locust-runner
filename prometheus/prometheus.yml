@@ -12,26 +12,12 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'prometheus'
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-    static_configs:
-    - targets: ['127.0.0.1:9090']
-  - job_name: 'spring-actuator'
-    metrics_path: '/actuator/prometheus'
-    scrape_interval: 5s
-    static_configs:
-    - targets: ['locust-runner:8088']
   - job_name: 'pushgateway'
     scrape_interval: 1s
     static_configs:
       - targets: ['pushgateway:9091']
         labels:
           instance: pushgateway
-  - job_name: 'sock-shop'
-    scrape_interval: 1s
-    static_configs:
-      - targets: ['10.60.38.181:3334']
         
 alerting:
   alertmanagers:
