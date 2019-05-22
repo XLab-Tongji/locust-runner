@@ -3,7 +3,7 @@
 # automatic build docker image
 
 PORT=8088
-HOST=10.60.38.181:9090
+HOST=127.0.0.1
 #set container port if have "-p" option
 while getopts 'p:h:' OPT; do
     case $OPT in

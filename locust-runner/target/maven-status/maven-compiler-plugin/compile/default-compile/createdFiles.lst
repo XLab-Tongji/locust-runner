@@ -15,6 +15,7 @@ com/tongji/domain/LocustResult.class
 com/tongji/service/ListenerService.class
 com/tongji/domain/DataCache.class
 com/tongji/config/SwaggerConfig.class
+com/tongji/domain/HostCache.class
 com/tongji/config/AsyncConfig.class
 com/tongji/controller/LocustController.class
 com/tongji/filter/Cors.class

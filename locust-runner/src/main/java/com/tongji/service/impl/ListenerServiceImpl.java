@@ -1,6 +1,7 @@
 package com.tongji.service.impl;
 
 import com.tongji.domain.DataCache;
+import com.tongji.domain.HostCache;
 import com.tongji.domain.LocustResult;
 import com.tongji.domain.LocustResultFactory;
 //import com.tongji.mapper.LocustMapper;
@@ -26,9 +27,19 @@ public class ListenerServiceImpl implements ListenerService {
 
     @Override
     public void analyzeLocustResult(File file) {
-        String scenarioId = file.getName().split("_")[0];
-        String Host = file.getName().split("_")[1];
+      
+    	String scenarioId = file.getName().split("_")[0];
+    	
+    	String hash = file.getName().split("_")[1];
+        HostCache hostCache = HostCache.getSimpleCache();
+        //String host_cache = hostCache.get(Integer.valueOf(hash));
+        String Host= hostCache.get(Integer.valueOf(hash));;
+        if(Host==null){
+        	Host = "DATAERROR";
+        }
+        
         try (InputStreamReader inputStreamReader = new FileReader(file)) {
+        	
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String lineTxt;
             while ((lineTxt = bufferedReader.readLine()) != null)
@@ -38,7 +49,7 @@ public class ListenerServiceImpl implements ListenerService {
                     //locustMapper.insert(locustResult);                  
                     Double req = getRequest(file.getName(),locustResult.getRequests());
                     System.out.println(locustResult.toString());
-                    System.out.println(String.valueOf(req));
+                    //System.out.println(String.valueOf(req));
                     promService.pushall(locustResult,req,Host);
                 }
             }
@@ -58,5 +69,7 @@ public class ListenerServiceImpl implements ListenerService {
     	cache.put(filename,Double.valueOf(nowreq));
     	return newreq;
     }
+    
+    
 
 }
