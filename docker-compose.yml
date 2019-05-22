@@ -73,3 +73,20 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
+  chronograf:
+    image: chronograf:latest
+    container_name: chronograf
+    volumes:
+      - ./chronograf:/var/lib/chronograf
+    command:
+      - '--influxdb-url=http://influxdb:8086'
+    restart: unless-stopped
+    expose:
+      - 8888
+    ports:
+      - "8888:8888"
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+

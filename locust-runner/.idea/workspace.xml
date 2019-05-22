@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be5c7cca-6a42-46c9-8af0-abf84c0942e8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_registry_prometheus_1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locust-runner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/locust-runner.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../prometheus/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../prometheus/prometheus.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -213,16 +207,15 @@
       <workItem from="1557745072504" duration="1414000" />
       <workItem from="1557823805450" duration="3223000" />
       <workItem from="1557907007797" duration="474000" />
-      <workItem from="1558486159421" duration="620000" />
+      <workItem from="1558486159421" duration="798000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8085000" />
+    <option name="totallyTimeSpent" value="8263000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21184371" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
