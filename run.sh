@@ -48,5 +48,4 @@ docker rm ${CURRENT_CONTAINER3}
 fi
 
 docker-compose up -d --build
-sleep 1m
-curl -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE prometheus"
+echo "Locust Build Finished"

@@ -63,6 +63,8 @@ services:
     container_name: influxdb
     volumes:
       - ./influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=prometheus
     restart: unless-stopped
     expose:
       - 8086
