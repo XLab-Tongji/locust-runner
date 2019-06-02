@@ -13,6 +13,7 @@ import com.tongji.service.LocustService;
 //import org.apache.poi.ss.usermodel.Sheet;
 //import org.apache.poi.ss.usermodel.Workbook;
 //import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import com.tongji.service.SchedulerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
@@ -74,7 +75,9 @@ public class LocustServiceImpl implements LocustService {
                 locustParam.getRunTime(),
                 locustParam.getHost(),
                 resultFileDir + locustParam.getScenarioId() + "_" +locustParam.hashCode());
-        
+
+        SchedulerService schedule = new SchedulerServiceImpl(locustParam.getRunTime());
+        schedule.start();
 
         System.out.println(cmd);
         ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", cmd);
@@ -98,7 +101,9 @@ public class LocustServiceImpl implements LocustService {
                 locustParam.getHost(),
                 //locustParam.getPort(),
                 resultFileDir + locustParam.getScenarioId() + "_" +locustParam.hashCode());
-    	
+
+    	SchedulerService schedule = new SchedulerServiceImpl(locustParam.getRunTime());
+        schedule.start();
     	
         System.out.println(cmd);
         ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", cmd);
